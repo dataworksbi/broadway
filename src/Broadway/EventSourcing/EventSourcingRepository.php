@@ -16,7 +16,7 @@ namespace Broadway\EventSourcing;
 use Assert\Assertion as Assert;
 use Broadway\Domain\AggregateRoot;
 use Broadway\Domain\DomainEventStream;
-use Broadway\EventHandling\EventBus;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Broadway\EventSourcing\AggregateFactory\AggregateFactory;
 use Broadway\EventStore\EventStore;
 use Broadway\EventStore\EventStreamNotFoundException;
@@ -39,7 +39,7 @@ class EventSourcingRepository implements Repository
      */
     public function __construct(
         EventStore $eventStore,
-        EventBus $eventBus,
+        MessageBusInterface $eventBus,
         string $aggregateClass,
         AggregateFactory $aggregateFactory,
         array $eventStreamDecorators = []
@@ -78,7 +78,7 @@ class EventSourcingRepository implements Repository
         $domainEventStream = $aggregate->getUncommittedEvents();
         $eventStream = $this->decorateForWrite($aggregate, $domainEventStream);
         $this->eventStore->append($aggregate->getAggregateRootId(), $eventStream);
-        $this->eventBus->publish($eventStream);
+        $this->eventBus->dispatch($eventStream);
     }
 
     private function decorateForWrite(AggregateRoot $aggregate, DomainEventStream $eventStream): DomainEventStream

@@ -14,17 +14,18 @@ declare(strict_types=1);
 namespace Broadway\ReadModel;
 
 use Broadway\Domain\DomainMessage;
-use Broadway\EventHandling\EventListener;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
  * Handles events and projects to a read model.
  */
-abstract class Projector implements EventListener
+#[AsMessageHandler]
+abstract class Projector
 {
     /**
      * {@inheritdoc}
      */
-    public function handle(DomainMessage $domainMessage): void
+    public function __invoke(DomainMessage $domainMessage): void
     {
         $event = $domainMessage->getPayload();
         $method = $this->getHandleMethod($event);

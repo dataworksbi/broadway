@@ -14,17 +14,18 @@ declare(strict_types=1);
 namespace Broadway\Processor;
 
 use Broadway\Domain\DomainMessage;
-use Broadway\EventHandling\EventListener;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
  * Base class for event stream processors.
  */
-abstract class Processor implements EventListener
+#[AsMessageHandler]
+abstract class Processor
 {
     /**
      * {@inheritdoc}
      */
-    public function handle(DomainMessage $domainMessage): void
+    public function __invoke(DomainMessage $domainMessage): void
     {
         $event = $domainMessage->getPayload();
         $method = $this->getHandleMethod($event);
