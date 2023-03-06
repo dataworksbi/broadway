@@ -5,34 +5,33 @@
     "license": "MIT",
     "require": {
         "beberlei/assert": "^3.0",
-        "broadway/uuid-generator": "^1.0",
-        "php": ">=7.2"
+        "php": ">=7.2",
+        "symfony/uid": "^6.2"
     },
-    "authors": [
-      {
-        "name": "Alexander",
-        "email": "iam.asm89@gmail.com"
-      },
-      {
-        "name": "Emil",
-        "email": "emil@broekmeulen.com"
-      },
-      {
-        "name": "Fritsjan",
-        "email": "fritsjan@qandidate.com"
-      },
-      {
-        "name": "othillo",
-        "email": "othillo@othillo.nl"
-      },
-      {
-        "name": "Willem-Jan",
-        "email": "wjzijderveld@gmail.com"
-      },
-      {
-        "name": "Qandidate.com",
-        "homepage": "http://labs.qandidate.com/"
-      }
+    "authors": [{
+            "name": "Alexander",
+            "email": "iam.asm89@gmail.com"
+        },
+        {
+            "name": "Emil",
+            "email": "emil@broekmeulen.com"
+        },
+        {
+            "name": "Fritsjan",
+            "email": "fritsjan@qandidate.com"
+        },
+        {
+            "name": "othillo",
+            "email": "othillo@othillo.nl"
+        },
+        {
+            "name": "Willem-Jan",
+            "email": "wjzijderveld@gmail.com"
+        },
+        {
+            "name": "Qandidate.com",
+            "homepage": "http://labs.qandidate.com/"
+        }
     ],
     "require-dev": {
         "monolog/monolog": "~2.0",
