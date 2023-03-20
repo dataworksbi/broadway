@@ -15,14 +15,16 @@ namespace Broadway\EventStore\Dbal;
 
 use Broadway\EventStore\Dbal\DBALEventStore;
 use Doctrine\DBAL\Connection;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Creates the event store schema.
  */
-class CreateEventStoreCommand extends ContainerAwareCommand
+#[AsCommand(name: 'broadway:event-store:create')]
+class CreateEventStoreCommand extends Command
 {
     /**
      * @var Connection
@@ -48,7 +50,7 @@ class CreateEventStoreCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('broadway:event-store:create')
+            //->setName('broadway:event-store:create')
             ->setDescription('Creates the event store schema')
             ->setHelp(
 <<<EOT
@@ -73,6 +75,6 @@ EOT
             $output->writeln('<info>Broadway event store schema already exists</info>');
         }
 
-        return 0;
+        return Command::SUCCESS;
     }
 }
