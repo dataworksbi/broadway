@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace Broadway\Snapshotting;
+namespace Broadway\Snapshotting\Dbal;
 
 use Broadway\Domain\DateTime;
 use Broadway\Serializer\Serializer;
