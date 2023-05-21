@@ -31,7 +31,7 @@ abstract class SnapableEventSourcedAggregateRoot extends EventSourcedAggregateRo
     /**
      * {@inheritdoc}
      */
-    public function apply($event)
+    public function apply($event): void
     {
         $this->handleRecursively($event);
 
