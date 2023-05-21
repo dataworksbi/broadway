@@ -61,7 +61,7 @@ abstract class SnapableEventSourcedAggregateRoot extends EventSourcedAggregateRo
      *
      * @param Snapshot|null $snapshot
      */
-    public function initializeState(DomainEventStream $stream, Snapshot $snapshot = null)
+    public function initializeState(DomainEventStream $stream, Snapshot $snapshot = null): void
     {
         if ($snapshot) {
             $this->playhead = $snapshot->getPlayhead();
@@ -76,7 +76,7 @@ abstract class SnapableEventSourcedAggregateRoot extends EventSourcedAggregateRo
     /**
      * {@inheritdoc}
      */
-    protected function handle($event)
+    protected function handle($event): void
     {
         $method = $this->getApplyMethod($event);
 
@@ -90,7 +90,7 @@ abstract class SnapableEventSourcedAggregateRoot extends EventSourcedAggregateRo
     /**
      * {@inheritdoc}
      */
-    protected function handleRecursively($event)
+    protected function handleRecursively($event): void
     {
         $this->handle($event);
 
