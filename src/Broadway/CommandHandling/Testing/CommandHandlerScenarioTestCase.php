@@ -14,8 +14,9 @@ declare(strict_types=1);
 namespace Broadway\CommandHandling\Testing;
 
 use Broadway\CommandHandling\CommandHandler;
-use Broadway\EventHandling\EventBus;
-use Broadway\EventHandling\SimpleEventBus;
+//use Broadway\EventHandling\EventBus;
+//use Broadway\EventHandling\SimpleEventBus;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Broadway\EventStore\EventStore;
 use Broadway\EventStore\InMemoryEventStore;
 use Broadway\EventStore\TraceableEventStore;
@@ -30,6 +31,14 @@ abstract class CommandHandlerScenarioTestCase extends TestCase
      * @var Scenario
      */
     protected $scenario;
+    
+    protected $eventBus;
+
+    public function __construct(MessageBusInterface $eventBus)
+    {
+        $this->eventBus = $eventBus;
+        parent::__construct();
+    }
 
     protected function setUp(): void
     {
@@ -39,8 +48,8 @@ abstract class CommandHandlerScenarioTestCase extends TestCase
     protected function createScenario(): Scenario
     {
         $eventStore = new TraceableEventStore(new InMemoryEventStore());
-        $eventBus = new SimpleEventBus();
-        $commandHandler = $this->createCommandHandler($eventStore, $eventBus);
+        //$eventBus = new SimpleEventBus();
+        $commandHandler = $this->createCommandHandler($eventStore, $this->eventBus);
 
         return new Scenario($this, $eventStore, $commandHandler);
     }
