@@ -57,5 +57,5 @@ abstract class CommandHandlerScenarioTestCase extends TestCase
     /**
      * Create a command handler for the given scenario test case.
      */
-    abstract protected function createCommandHandler(EventStore $eventStore, EventBus $eventBus): CommandHandler;
+    abstract protected function createCommandHandler(EventStore $eventStore, MessageBusInterface $eventBus): CommandHandler;
 }
